@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MeuIngresso — Ingressos para Shows, Festas e Eventos no Triângulo Mineiro</title>
+<meta name="description" content="Compre ingressos para shows, festas, rodeios e eventos no Triângulo Mineiro. Uberlândia, Uberaba, Ituiutaba e região.">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header" id="header">
+  <div class="container header-inner">
+    <a href="#" class="logo">
+      <span class="logo-icon">🎟️</span>
+      <span class="logo-text">Meu<strong>Ingresso</strong></span>
+    </a>
+    <div class="search-bar">
+      <span class="search-icon">🔍</span>
+      <input type="text" placeholder="Buscar eventos, artistas ou locais..." id="searchInput">
+    </div>
+    <div class="header-actions">
+      <button class="btn-city" id="cityBtn">📍 Uberlândia</button>
+      <button class="btn-icon" id="cartBtn" aria-label="Carrinho">
+        🛒
+        <span class="badge">2</span>
+      </button>
+      <button class="btn-outline" id="loginBtn">Entrar</button>
+      <button class="btn-primary" id="orgBtn">Seja Organizador</button>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero" id="heroSection">
+  <div class="hero-carousel">
+    <div class="hero-slide active" style="background: linear-gradient(135deg, #1e3a5f 0%, #2563EB 50%, #f97316 100%);">
+      <div class="hero-content">
+        <span class="hero-badge">🔥 Em destaque</span>
+        <h1>Rodeio do Triângulo 2026</h1>
+        <p>O maior rodeio do Triângulo Mineiro — 3 dias de festa, shows e muita adrenalina</p>
+        <div class="hero-meta">
+          <span>📅 20–22 Jun · Uberlândia</span>
+          <span>💰 A partir de R$ 45</span>
+        </div>
+        <div class="hero-buttons">
+          <button class="btn-primary-lg" onclick="showScreen('event')">Comprar Ingresso</button>
+          <button class="btn-ghost">Ver programação</button>
+        </div>
+      </div>
+    </div>
+    <div class="hero-slide" style="background: linear-gradient(135deg, #1a1a2e 0%, #7c3aed 50%, #ec4899 100%);">
+      <div class="hero-content">
+        <span class="hero-badge">⭐ Novo</span>
+        <h1>Wesley Safadão — Uberlândia</h1>
+        <p>Uma noite inesquecível com o rei do forró no Parque de Exposições</p>
+        <div class="hero-meta">
+          <span>📅 15 Jul · Uberlândia</span>
+          <span>💰 A partir de R$ 80</span>
+        </div>
+        <div class="hero-buttons">
+          <button class="btn-primary-lg" onclick="showScreen('event')">Comprar Ingresso</button>
+          <button class="btn-ghost">Saiba mais</button>
+        </div>
+      </div>
+    </div>
+    <div class="hero-slide" style="background: linear-gradient(135deg, #0f4c25 0%, #10b981 50%, #f59e0b 100%);">
+      <div class="hero-content">
+        <span class="hero-badge">🎓 Universitário</span>
+        <h1>Balada UFU — Festa Junina Edition</h1>
+        <p>A maior festa universitária de Uberlândia está de volta com tudo</p>
+        <div class="hero-meta">
+          <span>📅 28 Jun · Uberlândia</span>
+          <span>💰 A partir de R$ 25</span>
+        </div>
+        <div class="hero-buttons">
+          <button class="btn-primary-lg" onclick="showScreen('event')">Comprar Ingresso</button>
+          <button class="btn-ghost">Ver local</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="carousel-dots" id="carouselDots">
+    <span class="dot active" onclick="goToSlide(0)"></span>
+    <span class="dot" onclick="goToSlide(1)"></span>
+    <span class="dot" onclick="goToSlide(2)"></span>
+  </div>
+  <button class="carousel-btn prev" onclick="prevSlide()">‹</button>
+  <button class="carousel-btn next" onclick="nextSlide()">›</button>
+</section>
+
+<!-- AGENDA RÁPIDA -->
+<section class="agenda-rapida" id="agendaSection">
+  <div class="container">
+    <div class="agenda-btns">
+      <button class="agenda-btn active" onclick="setAgenda(this, 'hoje')">Hoje</button>
+      <button class="agenda-btn" onclick="setAgenda(this, 'amanha')">Amanhã</button>
+      <button class="agenda-btn" onclick="setAgenda(this, 'fds')">Este Fim de Semana</button>
+      <button class="agenda-btn" onclick="setAgenda(this, 'semana')">Esta Semana</button>
+      <button class="agenda-btn" onclick="setAgenda(this, 'mes')">Este Mês</button>
+    </div>
+  </div>
+</section>
+
+<!-- CATEGORIAS -->
+<section class="section" id="categoriasSection">
+  <div class="container">
+    <h2 class="section-title">Explorar por categoria</h2>
+    <div class="categories-grid">
+      <button class="category-card active-cat" onclick="filterCat(this)">
+        <span class="cat-icon">🎵</span>
+        <span>Shows</span>
+      </button>
+      <button class="category-card" onclick="filterCat(this)">
+        <span class="cat-icon">🎉</span>
+        <span>Festas</span>
+      </button>
+      <button class="category-card" onclick="filterCat(this)">
+        <span class="cat-icon">🤠</span>
+        <span>Rodeios</span>
+      </button>
+      <button class="category-card" onclick="filterCat(this)">
+        <span class="cat-icon">🎭</span>
+        <span>Teatro</span>
+      </button>
+      <button class="category-card" onclick="filterCat(this)">
+        <span class="cat-icon">😂</span>
+        <span>Stand-up</span>
+      </button>
+      <button class="category-card" onclick="filterCat(this)">
+        <span class="cat-icon">⚽</span>
+        <span>Esportes</span>
+      </button>
+      <button class="category-card" onclick="filterCat(this)">
+        <span class="cat-icon">🎓</span>
+        <span>Universitário</span>
+      </button>
+      <button class="category-card" onclick="filterCat(this)">
+        <span class="cat-icon">👶</span>
+        <span>Infantil</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- EVENTOS EM DESTAQUE -->
+<section class="section" id="eventosSection">
+  <div class="container">
+    <div class="section-header">
+      <h2 class="section-title">🔥 Destaques da Semana</h2>
+      <a href="#" class="ver-todos">Ver todos →</a>
+    </div>
+    <div class="events-grid" id="eventsGrid">
+      <!-- Event Card 1 -->
+      <div class="event-card" onclick="showScreen('event')">
+        <div class="event-img" style="background: linear-gradient(135deg,#1e3a5f,#2563EB);">
+          <span class="event-cat-badge">🤠 Rodeio</span>
+          <button class="fav-btn" onclick="toggleFav(event, this)">♡</button>
+          <div class="event-badge urgent">Últimas vagas!</div>
+        </div>
+        <div class="event-info">
+          <h3>Rodeio do Triângulo 2026</h3>
+          <div class="event-meta">
+            <span>📅 20–22 Jun, 2026</span>
+            <span>📍 Uberlândia - MG</span>
+          </div>
+          <div class="event-footer">
+            <span class="event-price">A partir de <strong>R$ 45</strong></span>
+            <button class="btn-buy" onclick="showScreen('event')">Comprar</button>
+          </div>
+        </div>
+      </div>
+      <!-- Event Card 2 -->
+      <div class="event-card" onclick="showScreen('event')">
+        <div class="event-img" style="background: linear-gradient(135deg,#1a1a2e,#7c3aed);">
+          <span class="event-cat-badge">🎵 Show</span>
+          <button class="fav-btn" onclick="toggleFav(event, this)">♡</button>
+          <div class="event-badge new">Novo</div>
+        </div>
+        <div class="event-info">
+          <h3>Wesley Safadão — Uberlândia</h3>
+          <div class="event-meta">
+            <span>📅 15 Jul, 2026</span>
+            <span>📍 Uberlândia - MG</span>
+          </div>
+          <div class="event-footer">
+            <span class="event-price">A partir de <strong>R$ 80</strong></span>
+            <button class="btn-buy" onclick="showScreen('event')">Comprar</button>
+          </div>
+        </div>
+      </div>
+      <!-- Event Card 3 -->
+      <div class="event-card" onclick="showScreen('event')">
+        <div class="event-img" style="background: linear-gradient(135deg,#0f4c25,#10b981);">
+          <span class="event-cat-badge">🎓 Universitário</span>
+          <button class="fav-btn" onclick="toggleFav(event, this)">♡</button>
+        </div>
+        <div class="event-info">
+          <h3>Balada UFU — Festa Junina Edition</h3>
+          <div class="event-meta">
+            <span>📅 28 Jun, 2026</span>
+            <span>📍 Uberlândia - MG</span>
+          </div>
+          <div class="event-footer">
+            <span class="event-price">A partir de <strong>R$ 25</strong></span>
+            <button class="btn-buy" onclick="showScreen('event')">Comprar</button>
+          </div>
+        </div>
+      </div>
+      <!-- Event Card 4 -->
+      <div class="event-card" onclick="showScreen('event')">
+        <div class="event-img" style="background: linear-gradient(135deg,#7f1d1d,#ef4444);">
+          <span class="event-cat-badge">😂 Stand-up</span>
+          <button class="fav-btn" onclick="toggleFav(event, this)">♡</button>
+          <div class="event-badge featured">Destaque</div>
+        </div>
+        <div class="event-info">
+          <h3>Whindersson Nunes — Uberaba</h3>
+          <div class="event-meta">
+            <span>📅 05 Jul, 2026</span>
+            <span>📍 Uberaba - MG</span>
+          </div>
+          <div class="event-footer">
+            <span class="event-price">A partir de <strong>R$ 60</strong></span>
+            <button class="btn-buy" onclick="showScreen('event')">Comprar</button>
+          </div>
+        </div>
+      </div>
+      <!-- Event Card 5 -->
+      <div class="event-card" onclick="showScreen('event')">
+        <div class="event-img" style="background: linear-gradient(135deg,#3b1f6b,#9333ea);">
+          <span class="event-cat-badge">🎉 Festa</span>
+          <button class="fav-btn" onclick="toggleFav(event, this)">♡</button>
+        </div>
+        <div class="event-info">
+          <h3>Baile do Havaí — Ituiutaba</h3>
+          <div class="event-meta">
+            <span>📅 12 Jul, 2026</span>
+            <span>📍 Ituiutaba - MG</span>
+          </div>
+          <div class="event-footer">
+            <span class="event-price">A partir de <strong>R$ 30</strong></span>
+            <button class="btn-buy" onclick="showScreen('event')">Comprar</button>
+          </div>
+        </div>
+      </div>
+      <!-- Event Card 6 -->
+      <div class="event-card" onclick="showScreen('event')">
+        <div class="event-img" style="background: linear-gradient(135deg,#1f2937,#4b5563);">
+          <span class="event-cat-badge">🎭 Teatro</span>
+          <button class="fav-btn" onclick="toggleFav(event, this)">♡</button>
+        </div>
+        <div class="event-info">
+          <h3>Auto da Compadecida — Teatro Municipal</h3>
+          <div class="event-meta">
+            <span>📅 18 Jul, 2026</span>
+            <span>📍 Uberlândia - MG</span>
+          </div>
+          <div class="event-footer">
+            <span class="event-price">A partir de <strong>R$ 20</strong></span>
+            <button class="btn-buy" onclick="showScreen('event')">Comprar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CIDADES -->
+<section class="section cities-section" id="cidadesSection">
+  <div class="container">
+    <h2 class="section-title">📍 Eventos por Cidade</h2>
+    <div class="cities-grid">
+      <button class="city-card" onclick="selectCity('Uberlândia')">
+        <span class="city-count">24</span>
+        <span class="city-name">Uberlândia</span>
+        <span class="city-label">eventos</span>
+      </button>
+      <button class="city-card" onclick="selectCity('Uberaba')">
+        <span class="city-count">12</span>
+        <span class="city-name">Uberaba</span>
+        <span class="city-label">eventos</span>
+      </button>
+      <button class="city-card" onclick="selectCity('Ituiutaba')">
+        <span class="city-count">8</span>
+        <span class="city-name">Ituiutaba</span>
+        <span class="city-label">eventos</span>
+      </button>
+      <button class="city-card" onclick="selectCity('Araguari')">
+        <span class="city-count">5</span>
+        <span class="city-name">Araguari</span>
+        <span class="city-label">eventos</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- CTA ORGANIZADOR -->
+<section class="cta-section" id="ctaSection">
+  <div class="container cta-inner">
+    <div class="cta-text">
+      <h2>Você é organizador de eventos?</h2>
+      <p>Cadastre seu evento gratuitamente e venda ingressos online com total controle pelo nosso painel.</p>
+      <ul class="cta-features">
+        <li>✅ Crie e gerencie seus eventos</li>
+        <li>✅ Venda via Pix, Boleto e Cartão</li>
+        <li>✅ Painel de vendas em tempo real</li>
+        <li>✅ Check-in por QR Code</li>
+      </ul>
+    </div>
+    <div class="cta-action">
+      <button class="btn-cta" onclick="showScreen('organizer')">Cadastrar meu evento →</button>
+      <p class="cta-sub">Aprovação em até 24h úteis • Sem mensalidade no plano básico</p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer" id="footerSection">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <span class="logo-text" style="font-size:1.3rem">🎟️ Meu<strong>Ingresso</strong></span>
+      <p>A plataforma de ingressos do Triângulo Mineiro</p>
+    </div>
+    <div class="footer-links">
+      <div class="footer-col">
+        <h4>Eventos</h4>
+        <a href="#">Shows</a>
+        <a href="#">Festas</a>
+        <a href="#">Rodeios</a>
+        <a href="#">Teatro</a>
+      </div>
+      <div class="footer-col">
+        <h4>Cidades</h4>
+        <a href="#">Uberlândia</a>
+        <a href="#">Uberaba</a>
+        <a href="#">Ituiutaba</a>
+        <a href="#">Araguari</a>
+      </div>
+      <div class="footer-col">
+        <h4>Plataforma</h4>
+        <a href="#">Seja Organizador</a>
+        <a href="#">Meus Ingressos</a>
+        <a href="#">Política de Privacidade</a>
+        <a href="#">Termos de Uso</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 MeuIngresso · Pagamentos processados com segurança pelo <strong>Pagar.me</strong> 🔒</p>
+  </div>
+</footer>
+
+<!-- BOTTOM NAV (mobile) -->
+<nav class="bottom-nav" id="bottomNav">
+  <button class="nav-item active" onclick="showScreen('home'); setNavActive(this)">
+    <span>🏠</span><span>Início</span>
+  </button>
+  <button class="nav-item" onclick="showScreen('agenda'); setNavActive(this)">
+    <span>📅</span><span>Agenda</span>
+  </button>
+  <button class="nav-item" onclick="showScreen('search'); setNavActive(this)">
+    <span>🔍</span><span>Buscar</span>
+  </button>
+  <button class="nav-item" onclick="showScreen('cart'); setNavActive(this)">
+    <span>🛒</span><span>Carrinho</span>
+  </button>
+  <button class="nav-item" onclick="showScreen('account'); setNavActive(this)">
+    <span>👤</span><span>Conta</span>
+  </button>
+</nav>
+
+<!-- MODAL: EVENT DETAIL -->
+<div class="modal-overlay" id="eventModal" onclick="closeModal('eventModal')">
+  <div class="modal-content event-modal" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeModal('eventModal')">✕</button>
+    <div class="event-modal-banner" style="background: linear-gradient(135deg,#1e3a5f,#2563EB,#f97316);">
+      <div class="event-modal-header">
+        <span class="event-cat-badge">🤠 Rodeio</span>
+        <h2>Rodeio do Triângulo 2026</h2>
+        <div class="event-modal-meta">
+          <span>📅 20–22 Jun, 2026 · Abertura: 18h</span>
+          <span>📍 Parque de Exposições, Uberlândia - MG</span>
+          <span>🔞 18 anos</span>
+        </div>
+      </div>
+    </div>
+    <div class="event-modal-body">
+      <div class="event-modal-left">
+        <h3>Sobre o evento</h3>
+        <p>O maior rodeio do Triângulo Mineiro retorna em 2026 com 3 dias repletos de adrenalina, shows nacionais e muita festa. Artistas confirmados: Israel & Rodolffo, Luan Santana e Gusttavo Lima.</p>
+        <h3 style="margin-top:1.5rem">Atrações</h3>
+        <div class="lineup">
+          <div class="lineup-item">🎵 Israel &amp; Rodolffo — Sexta, 20/06 às 22h</div>
+          <div class="lineup-item">🎵 Luan Santana — Sábado, 21/06 às 21h</div>
+          <div class="lineup-item">🎵 Gusttavo Lima — Domingo, 22/06 às 20h</div>
+        </div>
+        <h3 style="margin-top:1.5rem">Local</h3>
+        <div class="map-placeholder">🗺️ Parque de Exposições Camaru · Uberlândia - MG</div>
+      </div>
+      <div class="event-modal-right">
+        <div class="ticket-selector">
+          <h3>Selecionar Ingresso</h3>
+          <div class="ticket-type" onclick="selectTicket(this)">
+            <div class="ticket-info">
+              <strong>Pista — 1º Lote</strong>
+              <span class="ticket-batch">Lote 1</span>
+            </div>
+            <div class="ticket-price-qty">
+              <span class="t-price">R$ 45</span>
+              <div class="qty-ctrl">
+                <button onclick="changeQty(event,-1,this)">−</button>
+                <span class="qty">0</span>
+                <button onclick="changeQty(event,1,this)">+</button>
+              </div>
+            </div>
+          </div>
+          <div class="ticket-type" onclick="selectTicket(this)">
+            <div class="ticket-info">
+              <strong>VIP — 1º Lote</strong>
+              <span class="ticket-batch sold-out">Esgotado</span>
+            </div>
+            <div class="ticket-price-qty">
+              <span class="t-price">R$ 120</span>
+              <div class="qty-ctrl disabled">
+                <button disabled>−</button>
+                <span class="qty">0</span>
+                <button disabled>+</button>
+              </div>
+            </div>
+          </div>
+          <div class="ticket-type" onclick="selectTicket(this)">
+            <div class="ticket-info">
+              <strong>Camarote</strong>
+              <span class="ticket-batch">Disponível</span>
+            </div>
+            <div class="ticket-price-qty">
+              <span class="t-price">R$ 250</span>
+              <div class="qty-ctrl">
+                <button onclick="changeQty(event,-1,this)">−</button>
+                <span class="qty">0</span>
+                <button onclick="changeQty(event,1,this)">+</button>
+              </div>
+            </div>
+          </div>
+          <div class="ticket-subtotal">
+            <span>Subtotal:</span>
+            <strong id="subtotalVal">R$ 0,00</strong>
+          </div>
+          <button class="btn-buy-now" onclick="showScreen('checkout'); closeModal('eventModal')">
+            Adicionar ao Carrinho 🛒
+          </button>
+          <p class="ticket-note">🔒 Pagamento seguro via Pagar.me</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: CHECKOUT -->
+<div class="modal-overlay" id="checkoutModal" onclick="closeModal('checkoutModal')">
+  <div class="modal-content checkout-modal" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeModal('checkoutModal')">✕</button>
+    <h2 class="checkout-title">Finalizar Compra</h2>
+    <div class="checkout-steps">
+      <div class="step active" id="step1">1. Identificação</div>
+      <div class="step-sep">›</div>
+      <div class="step" id="step2">2. Dados</div>
+      <div class="step-sep">›</div>
+      <div class="step" id="step3">3. Pagamento</div>
+    </div>
+    <div class="checkout-body">
+      <div class="checkout-form" id="checkoutForm1">
+        <h3>Identificação</h3>
+        <input type="email" class="form-input" placeholder="E-mail">
+        <input type="password" class="form-input" placeholder="Senha">
+        <button class="btn-primary-full">Entrar →</button>
+        <div class="social-login">
+          <button class="btn-social">🔵 Entrar com Google</button>
+        </div>
+        <p class="login-alt">Não tem conta? <a href="#">Criar agora</a></p>
+      </div>
+      <div class="checkout-summary">
+        <h3>Resumo</h3>
+        <div class="summary-item">
+          <span>Pista × 2</span>
+          <span>R$ 90,00</span>
+        </div>
+        <div class="summary-item">
+          <span>Taxa de serviço</span>
+          <span>R$ 9,00</span>
+        </div>
+        <div class="summary-total">
+          <span>Total</span>
+          <strong>R$ 99,00</strong>
+        </div>
+        <div class="timer-box">
+          ⏳ Reserva expira em <strong id="timerVal">09:58</strong>
+        </div>
+      </div>
+    </div>
+    <div class="payment-methods" id="paymentMethods" style="display:none">
+      <h3>Forma de Pagamento</h3>
+      <div class="pay-opts">
+        <button class="pay-opt active" onclick="selectPay(this,'pix')">
+          <span>⚡</span> Pix<br><small>Aprovação imediata</small>
+        </button>
+        <button class="pay-opt" onclick="selectPay(this,'card')">
+          <span>💳</span> Cartão<br><small>Até 6×</small>
+        </button>
+        <button class="pay-opt" onclick="selectPay(this,'boleto')">
+          <span>📄</span> Boleto<br><small>Vence em 3 dias</small>
+        </button>
+      </div>
+      <div class="pix-box" id="pixBox">
+        <div class="qr-placeholder">QR Code Pix</div>
+        <p>Escaneie com seu banco ou copie o código</p>
+        <button class="btn-copy">📋 Copiar código Pix</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: ORGANIZER -->
+<div class="modal-overlay" id="organizerModal" onclick="closeModal('organizerModal')">
+  <div class="modal-content org-modal" onclick="event.stopPropagation()">
+    <button class="modal-close" onclick="closeModal('organizerModal')">✕</button>
+    <div class="org-hero">
+      <h2>🎛️ Seja um Organizador</h2>
+      <p>Crie e venda ingressos para seus eventos com total controle</p>
+    </div>
+    <div class="org-form">
+      <input type="text" class="form-input" placeholder="Nome completo / Razão social">
+      <input type="text" class="form-input" placeholder="CNPJ ou CPF">
+      <input type="email" class="form-input" placeholder="E-mail">
+      <input type="tel" class="form-input" placeholder="WhatsApp">
+      <input type="password" class="form-input" placeholder="Criar senha">
+      <button class="btn-primary-full" onclick="showOrgSuccess()">Enviar cadastro →</button>
+      <p class="org-note">✅ Aprovação em até 24h úteis · Plano básico gratuito</p>
+    </div>
+    <div class="org-success" id="orgSuccess" style="display:none">
+      <div class="success-icon">🎉</div>
+      <h3>Cadastro enviado!</h3>
+      <p>Você receberá um e-mail de confirmação em até 24h úteis.</p>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
