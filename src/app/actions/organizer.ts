@@ -38,7 +38,7 @@ export async function applyToBeOrganizer(formData: FormData) {
       data: {
         userId: session.user.id,
         companyName,
-        document,
+        cnpj: document,
         phone,
       },
     });
